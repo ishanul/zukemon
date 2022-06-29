@@ -1,8 +1,17 @@
 package com.zukemon.fight;
 
+import com.zukemon.behavior.HitBehavior;
+import com.zukemon.behavior.HitBehaviorFactory;
+import com.zukemon.character.Zukemon;
+import com.zukemon.playground.ZukemonDen;
+
 public class Fight {
 
-    CriticalHit criticalHit = new CriticalHit();
+    CriticalHit criticalHit;
+
+    public Fight(CriticalHit criticalHit) {
+        this.criticalHit = criticalHit;
+    }
 
     /**
      * Blastoise #9 Water Damage 258
@@ -17,6 +26,12 @@ public class Fight {
      * @param attackerType
      */
     public int hit(int attackerType) {
-      return 0;
+
+        Zukemon zukemon = ZukemonDen.getZukemon(attackerType);
+        HitBehavior hitBehavior = HitBehaviorFactory.getBehavior(zukemon);
+        hitBehavior.setCriticalHitBehavior(criticalHit);
+        zukemon.setHitBehavior(hitBehavior);
+
+        return zukemon.performHit();
     }
 }
