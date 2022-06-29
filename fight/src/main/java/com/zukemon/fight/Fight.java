@@ -1,9 +1,6 @@
 package com.zukemon.fight;
 
 public class Fight {
-
-    CriticalHit criticalHit = new CriticalHit();
-
     /**
      * Blastoise #9 Water Damage 258
      * Mew #151 Psychic Damage 150 (10% chance of critical hit)
@@ -14,9 +11,14 @@ public class Fight {
      * Krookodile #553 Dark No Damage -> It is the team lead, so he can call his team members to arms. Add the
      * damage of all other Zukemons
      *
-     * @param attackerType
+     * Critical hits make double damage
+     *
+     * @param attackerType the type of the attacker, refer to the numbers of the pokemon
      */
     public int hit(int attackerType) {
-      return 0;
+        ZukemonFactory factory = new ZukemonFactory();
+        Zukemon zukemon = factory.createZukemon(attackerType);
+
+        return zukemon.hit();
     }
 }
