@@ -27,13 +27,13 @@ public class NormalHitBehaviorTest {
     @Test
     void testPerformHit_whenCriticalHitIsNotThere_thenDamageIs150(){
         when(criticalHit.isCriticalHit(ArgumentMatchers.anyInt())).thenReturn(false);
-        int damage = normalHitBehavior.performHit(ZukemonDen.getZukemon(151));
+        int damage = normalHitBehavior.performHit(ZukemonDen.getZukemon(151, criticalHit));
         assertThat(damage).isEqualTo(150);
 
     }@Test
     void testPerformHit_whenCriticalHitIsThere_thenDamageIs300(){
         when(criticalHit.isCriticalHit(ArgumentMatchers.anyInt())).thenReturn(true);
-        int damage = normalHitBehavior.performHit(ZukemonDen.getZukemon(151));
+        int damage = normalHitBehavior.performHit(ZukemonDen.getZukemon(151, criticalHit));
         assertThat(damage).isEqualTo(300);
 
     }

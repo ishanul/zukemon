@@ -27,11 +27,7 @@ public class Fight {
      */
     public int hit(int attackerType) {
 
-        Zukemon zukemon = ZukemonDen.getZukemon(attackerType);
-        HitBehavior hitBehavior = HitBehaviorFactory.getBehavior(zukemon);
-        hitBehavior.setCriticalHitBehavior(criticalHit);
-        zukemon.setHitBehavior(hitBehavior);
-
+        Zukemon zukemon = ZukemonDen.getZukemon(attackerType, criticalHit);
         return zukemon.performHit();
     }
 }

@@ -1,6 +1,9 @@
 package com.zukemon.playground;
 
+import com.zukemon.behavior.HitBehavior;
+import com.zukemon.behavior.HitBehaviorFactory;
 import com.zukemon.character.Zukemon;
+import com.zukemon.fight.CriticalHit;
 
 import java.util.Collection;
 import java.util.HashMap;
@@ -20,8 +23,11 @@ public class ZukemonDen {
 
     }
 
-    public static Zukemon getZukemon(int type) {
-        return zukemons.get(type);
+    public static Zukemon getZukemon(int type, CriticalHit criticalHit) {
+        Zukemon zukemon = zukemons.get(type);
+        HitBehavior hitBehavior = HitBehaviorFactory.getBehavior(zukemon, criticalHit);
+        zukemon.setHitBehavior(hitBehavior);
+        return zukemon;
     }
 
     public static Collection<Zukemon> getAllMembers() {

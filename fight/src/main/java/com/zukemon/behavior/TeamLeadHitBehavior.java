@@ -13,8 +13,7 @@ public class TeamLeadHitBehavior implements  HitBehavior{
 
     public int performHit(final Zukemon zukemon) {
         return ZukemonDen.getAllMembers().stream().filter(zm -> zm.getType() != zukemon.getType()).mapToInt( zm -> {
-            HitBehavior hitBehavior = HitBehaviorFactory.getBehavior(zm);
-            hitBehavior.setCriticalHitBehavior(criticalHit);
+            HitBehavior hitBehavior = HitBehaviorFactory.getBehavior(zm, criticalHit);
             zm.setHitBehavior(hitBehavior);
 
             return zm.performHit();
